@@ -1,4 +1,4 @@
-package com.cloudplatform.utils;
+package com.example.utils;
 
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;

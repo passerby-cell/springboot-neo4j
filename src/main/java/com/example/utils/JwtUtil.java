@@ -1,4 +1,4 @@
-package com.cloudplatform.utils;
+package com.example.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
