@@ -3,18 +3,23 @@ package com.example.controller;
 import com.example.entity.MovieEntity;
 import com.example.entity.PersonEntity;
 import com.example.entity.Roles;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.core.Neo4jTemplate;
 import org.springframework.data.neo4j.repository.query.QueryFragmentsAndParameters;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-class AddNodeTest {
+@RestController
+@RequestMapping("/all")
+public class AllController {
+      @Autowired
+      private Neo4jTemplate neo4jTemplate;
 
-   @Test
-    void TestNoRepository(@Autowired Neo4jTemplate neo4jTemplate){
+    @GetMapping()
+  public void TestNoRepository(){
         // 删除所有节点和关系（删除节点会响应删除关联关系），避免后续创建节点重复影响
         neo4jTemplate.deleteAll(MovieEntity.class);
         neo4jTemplate.deleteAll(PersonEntity.class);
@@ -25,7 +30,7 @@ class AddNodeTest {
         // 参数1是目标关系实体节点 参数2是关系属性
         Roles roles1 = new Roles(new PersonEntity(1998,"上白石萌音"), Collections.singletonList("宫水三叶"));
         Roles roles2 = new Roles(new PersonEntity(1993,"神木隆之介"), Collections.singletonList("立花泷"));
-        PersonEntity director = new PersonEntity(1973,"新海诚");
+        PersonEntity director = new PersonEntity(1998,"新海诚");
         // 添加movie的演员实体，加入（参演）关系
         movie.getActorsAndRoles().add(roles1);
         movie.getActorsAndRoles().add(roles2);
@@ -64,7 +69,7 @@ class AddNodeTest {
 //                "RETURN person",map,PersonEntity.class);
         System.out.println("\n查询角色为“宫水三叶”的演员：\n"+roles);
 
-        Long userId = person.get().getId();// 记录当前查询的"新海诚"的节点id
+        Long userId = person.get().getPersonID();// 记录当前查询的"新海诚"的节点id
         // 更新①---------更新“新海诚”的name为曾用名“新津诚”（这是他的曾用名）
         map.put("name","新海诚");
         map.put("usedName","新津诚");

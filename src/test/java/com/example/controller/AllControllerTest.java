@@ -3,23 +3,18 @@ package com.example.controller;
 import com.example.entity.MovieEntity;
 import com.example.entity.PersonEntity;
 import com.example.entity.Roles;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.core.Neo4jTemplate;
 import org.springframework.data.neo4j.repository.query.QueryFragmentsAndParameters;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
-@RestController
-@RequestMapping("/add")
-public class AddNode {
-      @Autowired
-      private Neo4jTemplate neo4jTemplate;
+import static org.junit.jupiter.api.Assertions.*;
+class AllControllerTest {
 
-    @GetMapping("/test")
-  public void TestNoRepository(){
+   @Test
+    void TestNoRepository(@Autowired Neo4jTemplate neo4jTemplate){
         // 删除所有节点和关系（删除节点会响应删除关联关系），避免后续创建节点重复影响
         neo4jTemplate.deleteAll(MovieEntity.class);
         neo4jTemplate.deleteAll(PersonEntity.class);

@@ -15,7 +15,7 @@ public class MovieEntity {
 
     @Id
     @GeneratedValue // Id自增
-    private Long id;
+    private Long movieID;
 
     private final String title;
 
@@ -23,18 +23,18 @@ public class MovieEntity {
     private final String description;
 
     public MovieEntity(String title, String description) {
-        this.id = null;// 生成node时自动生成
+        this.movieID = null;// 生成node时自动生成
         this.title = title;
         this.description = description;
     }
 
     // 用户指定特定的Id
-    public MovieEntity withId(Long id) {
-        if (this.id!= null && this.id.equals(id)) {
+    public MovieEntity withId(Long movieID) {
+        if (this.movieID!= null && this.movieID.equals(movieID)) {
             return this;
         } else {
             MovieEntity newObject = new MovieEntity(this.title, this.description);
-            newObject.id = id;
+            newObject.movieID = movieID;
             return newObject;
         }
     }
