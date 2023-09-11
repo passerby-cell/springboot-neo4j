@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.entity.MovieEntity;
 import com.example.entity.PersonEntity;
 import com.example.entity.Roles;
+import com.example.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.core.Neo4jTemplate;
 import org.springframework.data.neo4j.repository.query.QueryFragmentsAndParameters;
@@ -20,7 +21,7 @@ public class AddController {
     private Neo4jTemplate neo4jTemplate;
 
     @GetMapping("/add")
-    public void TestNoRepository(@RequestParam("number") int number) {
+    public Result TestNoRepository(@RequestParam("number") int number) {
         // 删除所有节点和关系（删除节点会相应删除关联关系），避免后续创建节点重复影响
         neo4jTemplate.deleteAll(MovieEntity.class);
         neo4jTemplate.deleteAll(PersonEntity.class);
@@ -37,14 +38,15 @@ public class AddController {
             // 存入图数据库持久化
         }
         neo4jTemplate.save(movie);
-
+        return new Result(true, 200, "添加成功", null);
     }
 
 
     @GetMapping("/delete")
-    public void deleteNoRepository() {
+    public Result deleteNoRepository() {
         // 删除所有节点和关系（删除节点会相应删除关联关系），避免后续创建节点重复影响
         neo4jTemplate.deleteAll(MovieEntity.class);
         neo4jTemplate.deleteAll(PersonEntity.class);
+        return new Result(true, 200, "删除成功", null);
     }
 }
