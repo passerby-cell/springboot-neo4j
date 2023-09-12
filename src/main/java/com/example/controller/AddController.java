@@ -22,9 +22,6 @@ public class AddController {
 
     @GetMapping("/add")
     public Result TestNoRepository(@RequestParam("number") int number) {
-        // 删除所有节点和关系（删除节点会相应删除关联关系），避免后续创建节点重复影响
-        neo4jTemplate.deleteAll(MovieEntity.class);
-        neo4jTemplate.deleteAll(PersonEntity.class);
 
         // 创建节点实体
         MovieEntity movie = new MovieEntity("压力测试", "压力测试--节点数");
