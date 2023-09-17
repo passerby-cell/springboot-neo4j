@@ -76,7 +76,7 @@ public class JwtUtil {
     }
 
     public static void main(String[] args) throws Exception {
-//        System.out.println(createJWT("1","12",null));
-        System.out.println(parseJWT("eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiMTIiLCJpc3MiOiJhZG1pbiIsImlhdCI6MTY5NDk1MDEwMSwiZXhwIjoxNjk0OTUzNzAxfQ.1TR3bbXJd_JLTCFaaibHDfbOUCj25F8b-yhWjZCcgvI"));
+//        System.out.println(createJWT("1","120",null));
+        System.out.println(parseJWT("eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxIiwic3ViIjoiMTIwIiwiaXNzIjoiYWRtaW4iLCJpYXQiOjE2OTQ5NTcwMzEsImV4cCI6MTY5NDk2MDYzMX0.sk7aI2Sdh5o3of6nnIE2N6DqwSUHFe6CSVwsqD_peYA"));
     }
 }
